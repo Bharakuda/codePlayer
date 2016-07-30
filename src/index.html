@@ -43,7 +43,7 @@
 
         #toggles {
             margin: 0 auto;
-            width: 200px;
+            width: 194px;
             height: 27px;
             list-style: none;
             border: 1px solid grey;
@@ -79,6 +79,7 @@
             font-family: monospace;
             font-size: 110%;
             padding: 5px;
+            box-sizing: border-box;
         }
 
         .codeLabel {
@@ -88,7 +89,7 @@
 
         }
 
-        #cssContainer, #jsContainer {
+        #CSSContainer, #JSContainer {
             display: none;
         }
 
@@ -97,6 +98,10 @@
             position: relative;
             left: 20px;
             border: none;
+        }
+
+        .selected {
+            background-color: grey;
         }
 
     </style>
@@ -116,32 +121,32 @@
             </div>
 
             <ul id="toggles">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JS</li>
-                <li style="border-right: none">Result</li>
+                <li class="toggle selected">HTML</li>
+                <li class="toggle">CSS</li>
+                <li class="toggle">JS</li>
+                <li class="toggle selected" style="border-right: none">Result</li>
             </ul>
 
         </div>
 
         <div class="clear"></div>
 
-        <div class="codeContainer" id="htmlContainer">
+        <div class="codeContainer" id="HTMLContainer">
             <div class="codeLabel">HTML</div>
             <textarea>Example code here</textarea>
         </div>
 
-        <div class="codeContainer" id="cssContainer">
+        <div class="codeContainer" id="CSSContainer">
             <div class="codeLabel">CSS</div>
             <textarea>Example code here</textarea>
         </div>
 
-        <div class="codeContainer" id="jsContainer">
+        <div class="codeContainer" id="JSContainer">
             <div class="codeLabel">JS</div>
             <textarea>Example code here</textarea>
         </div>
 
-        <div class="codeContainer" id="resultContainer">
+        <div class="codeContainer" id="ResultContainer">
             <div class="codeLabel">Result</div>
             <iframe></iframe>
         </div>
@@ -157,6 +162,21 @@
 
         $(".codeContainer").height(codeContainerHeight+"px");
 
+        $(".toggle").click(function(){
+            $(this).toggleClass("selected");
+
+            var activeDiv = $(this).html();
+
+            $("#"+activeDiv+"Container").toggle();
+
+            var showingDivs = $(".codeContainer").filter(function(){
+                return($(this).css("display") != "none");
+            }).length;
+
+            var widthColumn = 100/showingDivs;
+
+            $(".codeContainer").width(widthColumn+"%");
+        });
 
     </script>
 
