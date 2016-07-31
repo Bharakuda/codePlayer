@@ -133,17 +133,17 @@
 
         <div class="codeContainer" id="HTMLContainer">
             <div class="codeLabel">HTML</div>
-            <textarea>Example code here</textarea>
+            <textarea id="htmlCode" placeholder="Example HTML code here"></textarea>
         </div>
 
         <div class="codeContainer" id="CSSContainer">
             <div class="codeLabel">CSS</div>
-            <textarea>Example code here</textarea>
+            <textarea id="cssCode" placeholder="html {background-color:blue}"></textarea>
         </div>
 
         <div class="codeContainer" id="JSContainer">
             <div class="codeLabel">JS</div>
-            <textarea>Example code here</textarea>
+            <textarea id="jsCode">Example code here</textarea>
         </div>
 
         <div class="codeContainer" id="ResultContainer">
@@ -176,6 +176,10 @@
             var widthColumn = 100/showingDivs;
 
             $(".codeContainer").width(widthColumn+"%");
+        });
+
+        $("#runButton").click(function(){
+            $("iframe").contents().find("html").html('<style>'+$("#cssCode").val()+'</style>'+$("#htmlCode").val());
         });
 
     </script>
