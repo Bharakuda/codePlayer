@@ -133,7 +133,7 @@
 
         <div class="codeContainer" id="HTMLContainer">
             <div class="codeLabel">HTML</div>
-            <textarea id="htmlCode" placeholder="Example HTML code here"></textarea>
+            <textarea id="htmlCode" placeholder='<div id="test"></div>'></textarea>
         </div>
 
         <div class="codeContainer" id="CSSContainer">
@@ -143,12 +143,12 @@
 
         <div class="codeContainer" id="JSContainer">
             <div class="codeLabel">JS</div>
-            <textarea id="jsCode">Example code here</textarea>
+            <textarea id="jsCode" placeholder='document.getElementById("test").innerHTML="It works!";'></textarea>
         </div>
 
         <div class="codeContainer" id="ResultContainer">
             <div class="codeLabel">Result</div>
-            <iframe></iframe>
+            <iframe id="resultFrame"></iframe>
         </div>
 
     </div>
@@ -180,6 +180,8 @@
 
         $("#runButton").click(function(){
             $("iframe").contents().find("html").html('<style>'+$("#cssCode").val()+'</style>'+$("#htmlCode").val());
+
+// EVAL NOT SECURE   document.getElementById("resultFrame").contentWindow.eval($("#jsCode").val());
         });
 
     </script>
